@@ -79,6 +79,13 @@ public:
     stack<Operator> s;
     std::string result;
     for(int i=0; i<tokens.size(); i++){
+      if(is_number(tokens[i])){
+        result.append(tokens[i]);
+        //cout << tokens[i] << "bug" <<endl;
+        result.append(" ");
+        continue;
+      }
+
       if(s.empty() || (tokens[i].compare("(")==0)){
         Operator x = Operator(tokens[i]); 
         s.push(x);
@@ -423,8 +430,8 @@ int main(int argc, char* argv[]) {
 
   //cout << cobj.calculate("( 1 + ( 4 + 5 + 2 ) - 3 ) + ( 6 + 8 )") << endl;
 
-  cout << cobj.calculate("( ( -7.3 + -1.5 ) * ( 5 + 6 ) - 10 / 10 + 1 )") << endl;
-  //cout << cobj.calculate("( -5 + 1 * ( 5 * 0.5 ) )");
+  cout << cobj.calculate("( ( 7.3 + 1.5 ) * ( 5 + 6 ) - 10 / 10 + 1 )") << endl;
+  cout << cobj.calculate("( -5 + 1 * ( 5 * 0.5 ) )");
   cout << "\nThird Step" << endl;
 
 
@@ -433,7 +440,7 @@ int main(int argc, char* argv[]) {
 
   vector<double> output = cobj.calculateMulti(
 
-      { "pi = 0.3", "pizza = pi * ( 9 * 9 ) ", "roku = pizza / pi", "vid = pizza * 3"});
+      { "pi = 0.3", "pizza = pi * ( -9 * 9 ) ", "roku = pizza / pi", "vid = pizza * 3"});
 
   for (size_t i = 0; i < output.size(); ++i) {
 
